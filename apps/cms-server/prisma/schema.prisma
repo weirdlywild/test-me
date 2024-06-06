@@ -1,0 +1,69 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model LearningMap {
+  accessibility    String?
+  createdAt        DateTime @default(now())
+  description      String?
+  discipline       String?
+  id               String   @id @default(cuid())
+  language         String?
+  learningOutcomes String?
+  owner            String?
+  subject          String?
+  title            String?
+  topic            String?
+  updatedAt        DateTime @updatedAt
+}
+
+model H5P {
+  accessibility    String?
+  createdAt        DateTime        @default(now())
+  description      String?
+  discipline       String?
+  id               String          @id @default(cuid())
+  language         String?
+  learningOutcomes String?
+  owner            String?
+  subject          EnumH5PSubject?
+  title            String?
+  topic            String?
+  updatedAt        DateTime        @updatedAt
+}
+
+model Quiz {
+  accessibility    String?
+  createdAt        DateTime @default(now())
+  description      String?
+  discipline       String?
+  id               String   @id @default(cuid())
+  language         String?
+  learningOutcomes String?
+  owner            String?
+  subject          String?
+  title            String?
+  topic            String?
+  updatedAt        DateTime @updatedAt
+}
+
+model User {
+  createdAt DateTime @default(now())
+  email     String?  @unique
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  password  String
+  roles     Json
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
+
+enum EnumH5PSubject {
+  test
+}
